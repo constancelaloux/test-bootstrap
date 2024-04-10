@@ -1,0 +1,59 @@
+<p>tableau responsif liste des écoles plusieurs colonnes avec pagination et colonne action (checkbox)</p>
+<p>Bouton de recherche multicritéres avec degré de précision</p>
+<div class="d-flex">
+  <form (submit)="search($event)" class="d-flex" role="search">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchTerms" name="search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+  <app-accordion></app-accordion>
+</div>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Actions</th>
+        <th scope="col">#</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Ville</th>
+        <th scope="col">Type d'école</th>
+        <th scope="col">Comité de rattachement</th>
+        <th scope="col">Est partenaire</th>
+        <th scope="col">Nd d'adhérents</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let school of visibleSchools">
+        <td>
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [(ngModel)]="school.selected">
+        </td>
+        <!--String interpolation pour afficher le contenu d'une variable dans le template-->
+        <td>{{ school.id }}</td>
+        <td>{{ school.nom }}</td>
+        <td>{{ school.ville }}</td>
+        <td>{{ school.type }}</td>
+        <td>{{ school.comite }}</td>
+        <td>{{ school.partenaire }}</td>
+        <td>{{ school.adherents }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+      <li class="page-item" (click)="prevPage()">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#" (click)="firstPage()">1 </a></li>
+      <li class="page-item"><a class="page-link" href="#" (click)="secondPage()">2 </a></li>
+      <li class="page-item"><a class="page-link" href="#" (click)="thirthPage()">3 </a></li>
+      <li class="page-item" (click)="nextPage()">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
